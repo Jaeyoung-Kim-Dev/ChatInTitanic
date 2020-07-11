@@ -9,39 +9,61 @@ app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-var dbUrl = 'mongodb+srv://user:1234@cluster0.9qh4q.mongodb.net/<dbname>?retryWrites=true&w=majority'
+mongoose.Promise = Promise
+
+var dbUrl = 'mongodb+srv://user:1234@cluster0.9qh4q.mongodb.net/chat?retryWrites=true&w=majority'
 
 var Message = mongoose.model('Message', {
     name: String,
     message: String
 })
 
-var message = [
-    {name: 'Tim', message: 'Hi'},
-    {name: 'Jane', message: 'Hello'},
-]
-
 app.get('/messages', (req, res) => {
-    res.send(message)
+    Message.find({}, (err, message) => {
+        res.send(message)
+    })
+
 })
 
-app.post('/messages', (req, res) => {
-    var message = new Message(req.body)
-
-    message.save((err) => {
-        if (err)
-            res.sendStatus(500)
-        message.push(req.body)
-        io.emit('message', req.body)
-        res.sendStatus(200)
+app.get('/messages/:user', (req, res) => {
+    var user = req.params.user
+    Message.find({name: user}, (err, message) => {
+        res.send(message)
     })
+
+})
+
+app.post('/messages', async (req, res) => {
+
+    try {
+        var message = new Message(req.body)
+
+        var savedMessage = await message.save()
+
+        console.log('saved')
+
+        var censored = await Message.findOne({message: 'badword'})
+
+        if (censored)
+            await Message.remove({_id: censored.id})
+        else {
+            io.emit('message', req.body)
+        }
+
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(500)
+        return console.error(error)
+    } finally {
+        console.log('message post called')
+    }
 })
 
 io.on('connection', (socket) => {
     console.log('a user connected')
 })
 
-mongoose.connect(dbUrl, { useUnifiedTopology: true, useNewUrlParser: true } , (err) => {
+mongoose.connect(dbUrl, {useUnifiedTopology: true, useNewUrlParser: true}, (err) => {
     console.log('mongo db connection', err)
 })
 
