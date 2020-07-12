@@ -22,7 +22,6 @@ app.get('/messages', (req, res) => {
     Message.find({}, (err, message) => {
         res.send(message)
     })
-
 })
 
 app.get('/messages/:user', (req, res) => {
