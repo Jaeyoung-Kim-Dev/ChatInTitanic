@@ -1,51 +1,158 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
 
-<div class="container">
-    <br>
-    <div class="jumbotron">
-        <h1 class="display-4">Send Message</h1>
-        <br>
-        <input id="name" class="form-control" placeholder="Name">
-        <br>
-        <textarea id="message" class="form-control" placeholder="Message"></textarea>
-        <br>
-        <button id="send" class="btn btn-success">Send</button>
-    </div>
-    <div id="messages">
-
+<!--<body class="bg-dark">
+<div class="container-fluid">
+    <div class="row justify-content-center min-vh-100">
+        <div class="col">
+            <div class="d-flex flex-column h-100">
+                <div class="row justify-content-center">
+                    <h1 id="title" class="text-white text-center row">Let's chat with people</h1>
+                </div>
+                <div class="row justify-content-center flex-grow-1">
+                    <div class="d-md-flex text-white col sticky-top row">
+                        <div id="messages" class="overflow-auto "
+                             style="height:700px; word-wrap: break-word; word-break: break-all;">
+                            &lt;!&ndash;white-space: pre;&ndash;&gt;
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-secondary align-items-center">
+                    <input id="name" class="form-control bg-dark text-white col-2 m-2" placeholder="Name">
+                    <textarea id="message" class="form-control bg-dark text-white col m-2"
+                              placeholder="Message"></textarea>
+                    <button id="send" class="btn btn-warning col-1 m-2">
+                        <h4>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right"
+                                 fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M6 12.796L11.481 8 6 3.204v9.592zm.659.753l5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                            </svg>
+                        </h4>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+</body>-->
+
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+        min-height: 100%;
+        color: white;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header,
+    footer {
+        flex: none;
+    }
+
+    main {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        flex: auto;
+    }
+</style>
+
+<body class="bg-dark">
+<header class="row justify-content-center m-1">
+    <h1 id="title" class="text-white text-center">Let's chat with people from my favourite movie Titanic</h1>
+</header>
+<main class="m-2">
+    <div id="messages"
+         style="word-wrap: break-word; word-break: break-all;">
+    </div>
+</main>
+<footer class="row bg-secondary align-items-center p-2 m-1">
+    <input id="name" class="form-control bg-dark text-white m-2 col-2" placeholder="Name">
+    <textarea id="message" class="form-control bg-dark text-white m-2 col"
+              placeholder="Message"></textarea>
+    <button id="send" class="btn btn-warning col-1">SEND</button>
+    <button id="reset" class="btn btn-danger col-1 m-2">RESET</button>
+
+</footer>
+</body>
+
 <script>
-    var socket = io()
+    const socket = io();
     $(() => {
-        $("#send").click(()=> {
-            var message = { name: $("#name").val(), message: $("#message").val()}
-            postMessage(message)
+        $("#send").click(() => {
+            let newDate = new Date();
+            let date = ("0" + (newDate.getDate() + 1)).slice(-2)
+            let month = ("0" + (newDate.getMonth() + 1)).slice(-2)
+            let year = newDate.getFullYear();
+            let hour = ("0" + (newDate.getHours() + 1)).slice(-2)
+            let minute = ("0" + (newDate.getMinutes() + 1)).slice(-2)
+            let now = month + "-" + date + "-" + year + " " + hour + ":" + minute;
+
+            const message = {
+                name: $("#name").val(),
+                message: $("#message").val(),
+                date: now
+            };
+            //$("#message").html("");
+            postMessage(message);
         })
-        getMessages()
+        $("#reset").click(() => {
+            let resetDB = confirm("Your comments are saved in online database server permanently, so if you want to reset the chatting then press the 'RESET' button.");
+            if(resetDB) {
+                $.post('http://localhost:3000/reset')
+            }
+        })
+        getMessages();
+        //const m = $("#messages");
+        //m.scrollTop(m[0].scrollHeight);
+
+        //scrollSmoothToBottom('messages')
     })
 
     socket.on('message', addMessages)
 
     function addMessages(message) {
-        $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+        $("#messages").append(
+            //    `<span class="font-weight-bold h5">${message.name}</span> <span class="text-muted">${message.date}</span> <p>${message.message}</p>`)
+            `<p><strong class="font-weight-bold h5">${message.name}</strong> <span class="text-muted small">${message.date}</span></p> <p>${message.message}</p>`)
+
+
+        //scrollSmoothToBottom('messages')
     }
-    
+
     function getMessages() {
-        $.get('http://localhost:3000/messages', (data)=> {
+        $.get('http://localhost:3000/messages', (data) => {
             data.forEach(addMessages);
-            /*data.forEach(function(element) {
-                addMessages(element)
-            }, this);*/
+            //scrollSmoothToBottom('messages')
+            $("#messages").scrollTop($("#messages")[0].scrollHeight);
         })
     }
 
     function postMessage(message) {
         $.post('http://localhost:3000/messages', message)
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
     }
+
+    function scrollSmoothToBottom(id) {
+        var div = document.getElementById(id);
+        $('#' + id).animate({
+            scrollTop: div.scrollHeight - div.clientHeight
+        }, 500);
+    }
+
 </script>
