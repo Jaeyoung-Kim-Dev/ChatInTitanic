@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+footer {
+    flex: none;
+}
+
+main {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    flex: auto;
+}
+
+.pic {
+    flex: none;
+}
+
+#messages {
+    word-wrap: break-word;
+    word-break: break-all;
+}
