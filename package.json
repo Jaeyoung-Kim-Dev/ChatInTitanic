@@ -1,9 +1,13 @@
 {
   "name": "chat",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "jasmine"
   },
   "keywords": [],
@@ -22,7 +26,5 @@
     "socket.io": "^2.3.0",
     "web": "0.0.2"
   },
-  "engines": {
-    "node": "12.x"
-  }
+
 }
