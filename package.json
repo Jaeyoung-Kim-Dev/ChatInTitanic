@@ -1,18 +1,11 @@
 {
   "name": "chat",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.x"
-  },
   "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "jasmine"
+  "engines": {
+    "node": "0.10.x"
   },
-  "keywords": [],
-  "author": "Jaeyoung Kim",
-  "license": "myself",
+  "main": "index.html",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
@@ -20,11 +13,27 @@
     "jQuery": "^1.7.4",
     "jasmine": "^3.5.0",
     "local": "^0.3.3",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "mongoose": "^5.9.22",
     "node": "^14.5.0",
     "request": "^2.88.2",
     "socket.io": "^2.3.0",
-    "web": "0.0.2"
-  }
+    "web": "^0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaeyoung-Kim-Dev/chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaeyoung-Kim-Dev/chat/issues"
+  },
+  "homepage": "https://github.com/Jaeyoung-Kim-Dev/chat#readme"
 }
