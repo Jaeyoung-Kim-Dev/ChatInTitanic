@@ -6,8 +6,9 @@ const io = require('socket.io')(http)
 const mongoose = require('mongoose')
 const moment = require('moment');
 const defaultChat = require('./defaultChat');
+const path = require('path');   // to deploy
 
-app.use(express.static(__dirname))
+app.use(express.static(__dirname))  // to deploy
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -79,6 +80,10 @@ app.post('/reset', async (req, res) => {
     } finally {
         console.log('all messages reset')
     }
+})
+
+app.get('*', (req, res) => {  // to deploy (frontend + backend)
+    res.sendFile(path.join(__dirname + '/src/index.html'));
 })
 
 const server = http.listen(3000, () => {
