@@ -46,7 +46,7 @@ $(() => {
     $("#reset").click(() => {  // reset DB
         let resetDB = confirm("Your comments are saved in online database server permanently, so if you want to reset the chatting then press the 'RESET' button.");
         if (resetDB) {
-            $.post('http://localhost:3000/reset')
+            $.post('/reset')
         }
     });
 
@@ -82,14 +82,14 @@ const addMessages = (message) => {
 }
 
 const getMessages = () => {
-    $.get('http://localhost:3000/messages', (data) => {
+    $.get('/messages', (data) => {
         data.forEach(addMessages);
         scrollSmoothToBottom('main');
     })
 }
 
 const postMessage = (message) => {
-    $.post('http://localhost:3000/messages', message)
+    $.post('/messages', message)
 }
 
 const scrollSmoothToBottom = (id) => {  // to scroll smoothly to the bottom of the body
