@@ -4,7 +4,7 @@
   "description": "",
   "proxy": "http://localhost:3000/",
   "engines": {
-    "node": "12.x.x"ㅔ.
+    "node": "12.x.x"
   },
   "main": "server.js",
   "dependencies": {
