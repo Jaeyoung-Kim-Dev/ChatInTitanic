@@ -71,9 +71,10 @@ app.post('/messages', async (req, res) => {
 
 app.post('/reset', async (req, res) => {
     try {
-        await mongoose.connection.db.dropCollection('messages');  //drop the collection 'messages'
+        console.log("hello")
+        /*await mongoose.connection.db.dropCollection('messages');  //drop the collection 'messages'
         await Message.collection.insertMany(defaultChat, {ordered: true});  //load dafaultChat and insert into the collection 'messages'
-        io.emit('refreshScreen') // send it to 'socket.on('refreshScreen', ...)' to the client(index.html)
+        io.emit('refreshScreen') // send it to 'socket.on('refreshScreen', ...)' to the client(index.html)*/
     } catch (error) {
         res.sendStatus(500)
         return console.error(error)
