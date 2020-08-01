@@ -25,7 +25,7 @@ const Message = mongoose.model('Message', {
 })
 
 io.on('connection', () => {
-    console.log('a user connected')
+    console.log('a user connected.')
 })
 
 mongoose.connect(dbUrl, {useUnifiedTopology: true, useNewUrlParser: true}, (err) => {
