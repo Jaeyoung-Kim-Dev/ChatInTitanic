@@ -1,10 +1,10 @@
 {
-  "name": "chat",
+  "name": "chatwithtitanic",
   "version": "1.0.0",
   "description": "",
   "proxy": "http://localhost:3000/",
   "engines": {
-    "node": "12.x.x"
+    "node": "12.x.x"ㅔ.
   },
   "main": "server.js",
   "dependencies": {
