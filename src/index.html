@@ -63,7 +63,7 @@ $(() => {
 })
 
 const addMessages = (message) => {
-    const profile = "photo/" + message.name + ".jpeg";
+    const profile = "photo/" + message.name.toLowerCase() + ".jpeg";
     const template = `
             <div class="pic m-1">
                 <img src=${profile} class="img-thumbnail rounded-circle" style="max-height: 80px; max-width: 80px" alt="profile">
