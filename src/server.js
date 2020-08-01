@@ -83,7 +83,7 @@ app.post('/reset', async (req, res) => {
 })
 
 app.get('*', (req, res) => {  // to deploy (frontend + backend)
-    res.sendFile(path.join(__dirname + '/src/index.html'));
+    res.sendFile(path.join(__dirname + '/index.html'));
 })
 
 const server = http.listen(3000, () => {
