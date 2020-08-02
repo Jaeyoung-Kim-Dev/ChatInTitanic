@@ -9,11 +9,9 @@ $(() => {
         $("#message").val("");  // empty textarea 'message'
     });
 
-    $("#reset").click(() => {  // reset DB
-        let resetDB = confirm("Your comments are saved in online database server permanently, so if you want to reset the chatting then press the 'RESET' button.");
-        if (resetDB) {
-            $.post('/reset')
-        }
+    $("#restore").click(() => {  // reset DB
+        $.post('/reset')
+
     });
 
     $(".dropdown-menu a").click(function () { // When select the person name, the dropdown displays the name. Used regular function (not arrow) to use 'this'
@@ -61,6 +59,6 @@ const postMessage = (message) => {
 const scrollSmoothToBottom = (id) => {  // to scroll smoothly to the bottom of the body
     const div = document.getElementById(id);
     $('#' + id).animate({
-        scrollTop: div.scrollHeight - div.clientHeight + $("#footer").height() * 2  // todo: fix "$("#footer").height() * 2" later. It doesn't scroll down to the bottom when it loads at the first time
+        scrollTop: div.scrollHeight - div.clientHeight /*+ $("#footer").height() * 2 */ // todo: fix "$("#footer").height() * 2" later. It doesn't scroll down to the bottom when it loads at the first time
     }, 500);
 }

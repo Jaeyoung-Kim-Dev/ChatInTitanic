@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!--fits on mobile device screen-->
+
 <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> <!--to use jQuery for messages.js-->
 <script type="text/javascript" src="./messages.js"></script>
@@ -20,30 +22,154 @@
 <script src="/socket.io/socket.io.js"></script>
 
 <script>  // for socket only. The rest javascript is in messages.js
-    const socket = io();  // to receive data from server.js without refreshing the page.
+const socket = io();  // to receive data from server.js without refreshing the page.
 
-    socket.on('message', (newMgs) => {  // when get a new message from 'server.js', it add messages and scroll down to the bottom
-        addMessages(newMgs);
-        scrollSmoothToBottom('main');
-    })
+socket.on('message', (newMgs) => {  // when get a new message from 'server.js', it add messages and scroll down to the bottom
+    addMessages(newMgs);
+    scrollSmoothToBottom('main');
+})
 
-    socket.on('refreshScreen', () => {
-        $("#messages").html(""); // clear the preload messages before displaying default messages
-        getMessages();
-    })
+socket.on('refreshScreen', () => {
+    $("#messages").html(""); // clear the preload messages before displaying default messages
+    getMessages();
+})
 </script>
 
 <html>
 <body class="bg-dark" style="color: white;">
-<header class="row justify-content-center m-1">
-    <h1 id="title" class="text-white text-center">Let's chat with people from my favourite movie Titanic</h1>
+<header class="justify-content-center m-1 ">
+    <div class="_container">
+        <h3 id="title" class="item item-grow text-center">Chat with people from Titanic
+            Titanic</h3>
+        <div class="item btn-group dropleft">
+            <button type="button" class="btn bg-primary text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                Menu
+            </button>
+            <div class="dropdown-menu bg-secondary">
+                <button type="button" class="dropdown-item text-success" data-toggle="modal" data-target="#CharaterModalCenter">
+                    Change Character
+                </button>
+                <button type="button" class="dropdown-item text-warning" data-toggle="modal" data-target="#RestoreModalCenter">
+                    Restore Default Chat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Person Modal -->
+    <div class="modal fade" id="CharaterModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="PersonModalLongTitle">Change Character</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span id="characters" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="_container" style="flex-wrap: wrap">
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/jack.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">JACK</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/rose.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">ROSE</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/cal.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">CAL</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/ruth.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">RUTH</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/andrews.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">ANDREWS</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/gracie.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">GRACIE</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/guggenheim.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">GUGGENHEIM</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/ismay.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">ISMAY</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/molly.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">MOLLY</button>
+                            </div>
+                        </div>
+                        <div class="item card">
+                            <img class="card-img-top _change_character" src="photo/waiter.jpeg" alt="JACK">
+                            <div class="card-body bg-dark text-center">
+                                <button class="btn btn-success">WAITER</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Modal -->
+    <div class="modal fade " id="RestoreModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="RestoreModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="RestoreModalCenterTitle">Restore Default Chat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>The all comments on the screen are stored in online database server permanently. <br>
+                        Hence, if you want to reset the chatting then press the 'RESTORE' button.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="restore" type="button" class="btn btn-danger" data-dismiss="modal">RESTORE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </header>
 <main class="m-2" id="main">
     <div class="container-fluid">
         <div id="messages" class="row"></div>
     </div>
 </main>
-<footer class="row bg-secondary align-items-center p-2 m-1" id="footer">
+<!--<footer class="row bg-secondary align-items-center p-2 m-1" id="footer">
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle bg-dark" id="name" type="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -81,6 +207,41 @@
                   d="M7.854.146a.5.5 0 0 0-.708 0l-2.5 2.5a.5.5 0 0 0 0 .708l2.5 2.5a.5.5 0 1 0 .708-.708L5.707 3 7.854.854a.5.5 0 0 0 0-.708z"/>
         </svg>
     </button>
+</footer>-->
+<footer class="bg-secondary" id="footer">
+    <div class="_container">
+        <div class="dropdown item">
+            <button class="btn btn-secondary dropdown-toggle bg-dark" id="name" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                NAME
+            </button>
+            <div class="dropdown-menu bg-dark text-white" aria-labelledby="name" id="names">
+                <a class="dropdown-item">JACK</a>
+                <a class="dropdown-item">ROSE</a>
+                <a class="dropdown-item">CAL</a>
+                <a class="dropdown-item">MOLLY</a>
+                <a class="dropdown-item">ISMAY</a>
+                <a class="dropdown-item">ANDREWS</a>
+                <a class="dropdown-item">GRACIE</a>
+                <a class="dropdown-item">GUGGENHEIM</a>
+                <a class="dropdown-item">WAITER</a>
+            </div>
+        </div>
+
+        <div class="item item-grow">
+            <input type="text" id="message" class=" form-control bg-dark text-white"
+                   placeholder="Message"/>
+        </div>
+
+        <button id="send" class="item btn btn-success">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd"
+                      d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+        </button>
+    </div>
 </footer>
 </body>
 </html>
