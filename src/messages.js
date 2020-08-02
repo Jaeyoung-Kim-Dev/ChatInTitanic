@@ -1,12 +1,10 @@
 $(() => {
-    $("#send").click(() => {  // send a message
-        const message = {
-            name: $("#name").html(),
-            message: $("#message").val(),
-            // date will be added in server.js
-        };
-        postMessage(message);
-        $("#message").val("");  // empty textarea 'message'
+    $("#send").click(pressSend);
+
+    $(document).on('keypress',e => {  // When press enter key in message input
+        if(e.which === 13) {
+            pressSend();
+        }
     });
 
     $("#restore").click(() => {  // reset DB
@@ -54,6 +52,16 @@ const getMessages = () => {
 
 const postMessage = (message) => {
     $.post('/messages', message)
+}
+
+const pressSend = () => {
+    const message = {
+        name: $("#name").html(),
+        message: $("#message").val(),
+        // date will be added in server.js
+    };
+    postMessage(message);
+    $("#message").val("");  // empty textarea 'message'
 }
 
 const scrollSmoothToBottom = (id) => {  // to scroll smoothly to the bottom of the body
