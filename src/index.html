@@ -47,6 +47,10 @@ socket.on('refreshScreen', () => {
                 Menu
             </button>
             <div class="dropdown-menu bg-secondary">
+                <button type="button" class="dropdown-item text-info" data-toggle="modal"
+                        data-target="#AboutModalCenter">
+                    About
+                </button>
                 <button type="button" class="dropdown-item text-success" data-toggle="modal"
                         data-target="#ViewModalCenter">
                     View Participants
@@ -55,6 +59,33 @@ socket.on('refreshScreen', () => {
                         data-target="#RestoreModalCenter">
                     Restore Default Chat
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade " id="AboutModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="AboutModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AboutModalCenterTitle">About</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <h3>Welcome to Titanic!</h3>
+                        <img src="photo/dining.jpg" alt="dining_photo" style="max-width: 300px"><br><br>
+                    </div>
+                    <p>You can select a person and chat with people from my favourite movie.</p>
+                    <p>Multiple users can access this application and talk to each other in realtime.</p>
+                    <p>I hope you enjoy this!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -175,7 +206,7 @@ socket.on('refreshScreen', () => {
                    placeholder="Message"/>
         </div>
 
-        <button id="send" class="item btn btn-success">
+        <button id="send" class="item btn btn-success p-1 m-1">
             <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
