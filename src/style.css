@@ -29,7 +29,7 @@ main {
 ._container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -39,14 +39,19 @@ main {
 
 .item {
     margin: 2px;
+    text-align: center;
 }
 
 ._change_character {
-    max-height: 120px;
-    max-width: 120px;
+    width: 120px;
+    height: 120px;
 }
 
 #messages {
     word-wrap: break-word;
-    word-break: break-all;
+}
+
+.dropdown-menu > a:hover, .dropdown-menu > button:hover {
+    background-image: none;
+    background-color: #343a40;
 }

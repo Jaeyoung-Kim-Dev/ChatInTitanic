@@ -30,7 +30,7 @@ const addMessages = (message) => {
     const profile = "photo/" + message.name.toLowerCase() + ".jpeg";
     const template = `
             <div class="pic m-1">
-                <img src=${profile} class="img-thumbnail rounded-circle" style="max-height: 80px; max-width: 80px" alt="profile">
+                <img src=${profile} class="img-thumbnail rounded-circle" style="height: 80px; width: 80px" alt="profile">
             </div>
             <div class="col m-1">
                 <div class="row">
