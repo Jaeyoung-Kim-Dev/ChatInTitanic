@@ -8,7 +8,7 @@ const moment = require('moment');
 const defaultChat = require('./defaultChat');
 const path = require('path');   // to deploy
 
-app.use(express.static(__dirname))  // to deploy
+app.use(express.static(__dirname))  // set location as static to deploy. Such as image files
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -82,9 +82,9 @@ app.post('/reset', async (req, res) => {
     }
 })
 
-/*app.get('*', (req, res) => {  // to deploy (frontend + backend)
+app.get('*', (req, res) => {  // to deploy (frontend + backend)
     res.sendFile(path.join(__dirname + '/index.html'));
-})*/
+})
 
 const server = http.listen(3000, () => {
     console.log('server is listening on port', server.address().port)

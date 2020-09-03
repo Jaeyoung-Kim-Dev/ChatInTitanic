@@ -4,7 +4,7 @@
   "description": "",
   "proxy": "http://localhost:3000/",
   "engines": {
-    "node": "12.x.x"
+    "node": "12.x"
   },
   "main": "server.js",
   "dependencies": {
@@ -28,13 +28,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jaeyoung-Kim-Dev/chat.git"
+    "url": "git+https://github.com/Jaeyoung-Kim-Dev/chatwithtitanic.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jaeyoung-Kim-Dev/chat/issues"
+    "url": "https://github.com/Jaeyoung-Kim-Dev/chatwithtitanic/issues"
   },
-  "homepage": "https://github.com/Jaeyoung-Kim-Dev/chat#readme"
+  "homepage": "https://github.com/Jaeyoung-Kim-Dev/chatwithtitanic#readme"
 }

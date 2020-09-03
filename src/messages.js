@@ -26,6 +26,7 @@ $(() => {
 
 const addMessages = (message) => {
     const profile = "photo/" + message.name.toLowerCase() + ".jpeg";
+    /*todo: think of using Bootstrap Media for the template*/
     const template = `
             <div class="pic m-1">
                 <img src=${profile} class="img-thumbnail rounded-circle" style="height: 80px; width: 80px" alt="profile">
@@ -55,13 +56,14 @@ const postMessage = (message) => {
 }
 
 const pressSend = () => {
+    const newMsg = $("#message");
     const message = {
         name: $("#name").html(),
-        message: $("#message").val(),
+        message: newMsg.val(),
         // date will be added in server.js
     };
     postMessage(message);
-    $("#message").val("");  // empty textarea 'message'
+    newMsg.val("");  // empty textarea 'message'
 }
 
 const scrollSmoothToBottom = (id) => {  // to scroll smoothly to the bottom of the body
