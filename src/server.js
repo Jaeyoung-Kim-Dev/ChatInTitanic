@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express()
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
-const mongoose = require('mongoose')
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const mongoose = require('mongoose');
 const moment = require('moment');
 const defaultChat = require('./defaultChat');
 const path = require('path');   // to deploy
@@ -83,7 +83,7 @@ app.post('/reset', async (req, res) => {
 })
 
 app.get('*', (req, res) => {  // to deploy (frontend + backend)
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname, '/index.html'));
 })
 
 const server = http.listen(3000, () => {
