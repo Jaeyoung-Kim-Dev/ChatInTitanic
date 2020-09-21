@@ -7,7 +7,7 @@ You can select a person and chat with people from my favourite movie.
 Multiple users can access this application and talk to each other in real-time.
 
 
-<a href="http://64.137.182.170/">LINK</a>
+<a href="http://chatwithtitanic.jaeyoungkim.codes/">LINK</a>
 
 
 I hope you enjoy this!
