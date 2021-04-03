@@ -13,4 +13,4 @@ Multiple users can access this application and talk to each other in real-time.
 I hope you enjoy this!
 
 ### Languages
-`HTML5, CSS3, JavaScript, Node.JS, Express, Socket.IO, jQuery and Bootstrap`
+`HTML5, CSS3, JavaScript, Node.JS, Express, Socket.IO, jQuery, Bootstrap and MongoDB`
