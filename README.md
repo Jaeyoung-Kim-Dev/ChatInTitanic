@@ -19,7 +19,7 @@ This is a web-based chat application. You can choose one character from the movi
 ## Screen Shots
 
 > Desktop Screen
-> ![erd](https://github.com/Jaeyoung-Kim-Dev/ChatWithTitanic/blob/master/screenshots/screenshot1.jpg?raw=true)
+> ![erd](./screenshots/screenshot1.jpg?raw=true)
 
 ![erd](https://github.com/Jaeyoung-Kim-Dev/ChatWithTitanic/blob/master/screenshots/screenshot2.jpg?raw=true)
 
